@@ -3,6 +3,8 @@ from m3.actions import ActionPack
 from objectpack.actions import ObjectPack
 from objectpack.ui import ModelEditWindow
 
+from .controller import observer
+
 
 class UserActionPack(ObjectPack):
     url = '/user'
@@ -10,7 +12,7 @@ class UserActionPack(ObjectPack):
     model = User
     add_to_menu = True
 
-    add_window = ModelEditWindow.fabricate(model=model)
+    add_window = ModelEditWindow.fabricate(model, model_register=observer)
     edit_window = add_window
 
 
@@ -20,7 +22,7 @@ class GroupActionPack(ObjectPack):
     model = Group
     add_to_menu = True
 
-    add_window = ModelEditWindow.fabricate(model=model)
+    add_window = ModelEditWindow.fabricate(model, model_register=observer)
     edit_window = add_window
 
 
@@ -30,7 +32,7 @@ class PermissionActionPack(ObjectPack):
     model = Permission
     add_to_menu = True
 
-    add_window = ModelEditWindow.fabricate(model=model)
+    add_window = ModelEditWindow.fabricate(model, model_register=observer)
     edit_window = add_window
 
 
@@ -40,5 +42,5 @@ class ContentTypeActionPack(ObjectPack):
     model = ContentType
     add_to_menu = True
 
-    add_window = ModelEditWindow.fabricate(model=model)
+    add_window = ModelEditWindow.fabricate(model, model_register=observer)
     edit_window = add_window
